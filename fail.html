@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talaash - Karnataka Sangha's Junior College</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* General Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3e5f5;
+      color: #333;
+      margin: 0;
+    }
+
+    /* Pop-up Notice Box */
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      padding: 20px;
+      background-color: #ffebee;
+      border-radius: 10px;
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      display: none; /* Hidden by default */
+      z-index: 1000;
+    }
+
+    /* Fade-in Animations */
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 3s forwards;
+    }
+    .fade-in-delay {
+      opacity: 0;
+      animation: fadeIn 3s 3s forwards; /* 3s delay */
+    }
+    .notice-content {
+      display: none; /* Hide notice initially */
+    }
+
+    /* Keyframes */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Styling for Namaste and Creator Credit */
+    .namaste, .created-by {
+      font-size: 18px;
+      color: #ff6f61;
+      margin: 10px 0;
+    }
+
+    .close-btn {
+      margin-top: 15px;
+      padding: 5px 10px;
+      background: #ff6f61;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  /* Navbar styling */
+    .navbar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      background: #ffe4e1;
+      box-shadow: inset 5px 5px 10px #d8b3b0, inset -5px -5px 10px #ffffff;
+    }
+
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      color: #ff6f61;
+    }
+
+    /* Logo Image Styling */
+    .navbar-logo img {
+      max-width: 50px; /* Adjust size as needed */
+      margin-right: 10px;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 20px;
+      background-color: #ffecb3;
+      box-shadow: inset 5px 5px 10px #d8b27a, inset -5px -5px 10px #fff6df;
+    }
+
+    .hero-logo {
+      max-width: 230px;
+      margin-bottom: 10px;
+    }
+
+    /* Timetable Section */
+    .day-timetable {
+      margin: 20px;
+      text-align: center;
+    }
+
+    .scrollable-timetable {
+      max-height: 200px;
+      overflow-y: auto;
+      background-color: #ffebee;
+      border-radius: 10px;
+      box-shadow: inset 5px 5px 10px #d8a4a4, inset -5px -5px 10px #fff4f4;
+      padding: 10px;
+    }
+
+    .event-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .event-table th, .event-table td {
+      padding: 10px;
+      text-align: center;
+    }
+
+    .event-table th {
+      background-color: #ffd1dc;
+    }
+
+    /* Guidelines Section */
+    .guidelines {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .guidelines p {
+      margin: 16px 0;
+    }
+
+    .register-btn, .pdf-btn {
+      background: #ffd1dc;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+      box-shadow: 5px 5px 10px #d9a1ad, -5px -5px 10px #ffffff;
+    }
+
+    /* FAQ Section */
+    .faq, .contact-us, .our-location, footer {
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Footer */
+    
+    .location-link {
+      display: inline-block;
+      background: #ffecb3;
+      padding: 10px 20px;
+      color: #ff6f61;
+      text-decoration: none;
+      border-radius: 5px;
+      box-shadow: 5px 5px 10px #d8b27a, -5px -5px 10px #fff6df;
+      margin-top: 10px;
+    }
+  /* Styling for Responsive Square Map */
+.map-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px; /* Optional max width */
+  padding-top: 100%; /* 1:1 Aspect Ratio */
+  margin: auto;
+}
+
+.map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px; /* Optional rounded corners */
+}
+/* Neumorphic Countdown Timer Styling */
+#countdown {
+  text-align: center;
+  padding: 20px;
+  margin: 20px;
+  font-size: 24px;
+  color: #ff6f61;
+  background-color: #ffebee;
+  border-radius: 15px;
+  box-shadow: 5px 5px 15px rgba(216, 163, 163, 0.6), -5px -5px 15px rgba(255, 244, 244, 0.9);
+}
+  /* Marquee Section */
+    .marquee-container {
+      background-color: #ffe4e1;
+      padding: 15px;
+      box-shadow: inset 5px 5px 10px #d8b3b0, inset -5px -5px 10px #ffffff;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Marquee Text Styling */
+    .marquee {
+      display: inline-block;
+      white-space: nowrap;
+      font-size: 18px;
+      color: #ff6f61;
+      animation: marqueeScroll 15s linear infinite;
+    }
+
+    /* Keyframes for Marquee Scroll */
+    @keyframes marqueeScroll {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+  .card-section {
+    display: flex;
+    overflow-x: auto;
+    gap: 16px;
+    padding: 20px;
+    white-space: nowrap;
+    scroll-snap-type: x mandatory;
+}
+
+.card {
+    background: #e0e5ec;
+    border-radius: 16px;
+    padding: 20px;
+    width: 200px;
+    flex-shrink: 0;
+    text-align: center;
+    scroll-snap-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 8px 8px 15px #babecc, -8px -8px 15px #ffffff;
+}
+
+.card-logo {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    box-shadow: 4px 4px 8px #babecc, -4px -4px 8px #ffffff;
+}
+
+.card-content h3 {
+    font-size: 18px;
+    color: #333;
+}
+
+.card-content p {
+    display: none;
+    font-size: 8px;
+    color: #666;
+}
+
+.card.expanded p,
+.card.expanded .description {
+    display: block;
+}
+
+.description {
+    font-size: 8px;
+    color: #888;
+    margin-top: 5px;
+}
+
+.get-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 4px 4px 8px #babecc, -4px -4px 8px #ffffff;
+    margin-top: 10px;
+}
+
+.get-button:hover {
+    background-color: #0056b3;
+}
+
+.card.expanded {
+    transform: scale(1.1);
+    width: 240px;
+}
+  /* Banner Styling to Match TALAASH UI */
+.website-banner {
+  background-color: #ffe4e1;
+  padding: 20px;
+  text-align: center;
+  box-shadow: inset 5px 5px 10px #d8b3b0, inset -5px -5px 10px #ffffff;
+  border-radius: 15px;
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+.banner-image {
+  width: 100%;
+  max-width: 1000px; /* Adjust as needed */
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 5px 5px 15px rgba(216, 163, 163, 0.6), -5px -5px 15px rgba(255, 244, 244, 0.9);
+}
+  /* Timeline Section */
+.timeline-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.timeline-title {
+  font-size: 24px;
+  color: #ff6f61;
+  margin-bottom: 20px;
+}
+
+.timeline {
+  position: relative;
+  margin-top: 20px;
+  padding-left: 40px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #ff6f61, #ffe4e1);
+  animation: lineGrow 2s ease-in-out forwards;
+}
+
+.timeline-item {
+  position: relative;
+  margin: 20px 0;
+  padding-left: 40px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.timeline-icon {
+  position: absolute;
+  left: -10px;
+  background-color: #ff6f61;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-content {
+  background: #ffebee;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 8px #d8b3b0, -4px -4px 8px #ffffff;
+  width: calc(100% - 60px);
+  text-align: left;
+}
+
+.timeline-content h4 {
+  font-size: 18px;
+  color: #ff6f61;
+}
+
+.timeline-content p {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Line Animation */
+@keyframes lineGrow {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100%;
+  }
+}
+  footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #333;
+  color: #fff;
+  font-size: 30px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.social-icons a {
+  color: #fff;
+  font-size: 24px;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.social-icons a:hover {
+  transform: scale(1.1);
+  color: #ff0000; /* Change color on hover for YouTube, you can customize this */
+}
+ /* Features Section Styling */
+#features {
+    background-color: #f7e8f3;
+    padding: 20px;
+    text-align: center;
+}
+
+.features-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Wrapper to hold cards */
+.features-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Feature group styling to create rows */
+.feature-group {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* Card styling */
+.feature-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 15px;
+    border: 2px solid #333;
+    width: 160px;
+    max-width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    position: relative;
+}
+
+/* Specific styling for each group */
+.a1, .a2 {
+    border-color: red;
+}
+
+.b1, .b2 {
+    border-color: blue;
+}
+
+/* Icon styling */
+.feature-icon {
+    font-size: 20px;
+    color: #ff6b6b;
+    margin-bottom: 8px;
+}
+
+/* Title and text styling */
+h3 {
+    margin: 0;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #333;
+}
+
+p {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .features-wrapper {
+        gap: 15px;
+    }
+
+    .feature-card {
+        width: 140px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .feature-card {
+        width: 130px;
+        padding: 8px;
+    }
+    
+    .feature-icon {
+        font-size: 18px;
+    }
+
+    h3 {
+        font-size: 14px;
+    }
+
+    p {
+        font-size: 10px;
+    }
+}
+
+.guidelines {
+  padding: 20px;
+  background: #f0f0f3;
+  border-radius: 15px;
+  box-shadow: 9px 9px 16px #b5b5b5, -9px -9px 16px #ffffff;
+  max-width: 600px;
+  margin: auto;
+}
+
+.scrollable-text {
+  max-height: 200px; /* Adjust based on desired height */
+  overflow-y: auto;
+  padding: 10px;
+  border-radius: 10px;
+  background: #f0f0f3;
+  box-shadow: inset 5px 5px 10px #b5b5b5, inset -5px -5px 10px #ffffff;
+}
+
+.scrollable-text::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable-text::-webkit-scrollbar-thumb {
+  background: #d1d1d1;
+  border-radius: 10px;
+}
+
+.scrollable-text::-webkit-scrollbar-track {
+  background: #f0f0f3;
+}
+
+
+  
+  </style>
+</head>
+<body>
+
+  <!-- Pop-up Notice Box -->
+  <div class="popup" id="popupNotice">
+    <div id="namaste" class="namaste fade-in">Namaste</div>
+    <div id="createdBy" class="created-by fade-in-delay">Website made by Ujwal Guru</div>
+    <div id="noticeContent" class="notice-content">
+      <h3>Notice</h3>
+      <p> Today date is <span id="currentDate"></span>. And registration will close on 02/10/24</p>
+      <button class="close-btn" onclick="closePopup()">Close</button>
+    </div>
+  </div>
+
+  <!-- Navbar with Logo -->
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <img src="logocollege.png" alt="College Logo"> <!-- Replace 'college-logo.png' with your actual logo file path -->
+      Karnataka Sangha's Junior College of Commerce
+    </div>
+  </nav>
+  <!-- Marquee Section Below Navbar -->
+  <div class="marquee-container">
+    <div class="marquee">Welcome to our website! Please follow the guidelines and enjoy your time at TALAASH! website design,develop and managed by ujwal guru</div>
+  </div>
+  <!-- Banner Section -->
+<section class="website-banner">
+  <img src="image.jpg" alt="Talaash Event Banner" class="banner-image"> <!-- Replace 'banner-image.jpg' with the path to your banner image -->
+</section>
+
+<!-- Countdown Timer -->
+<div id="countdown">Registration ends in: <span id="timer"></span></div>
+  <!-- Hero Section -->
+  <header class="hero">
+    <img src="logo.png" alt="Event Logo" class="hero-logo">
+    <h2>Welcome to Talaash - Karnataka Sangha's Junior College Event</h2>
+  </header>
+
+  <!-- Day 1 Timetable Section -->
+  <section class="day-timetable">
+    <h3>Event Timetable - Day 1</h3>
+    <h5>Scroll down in the box their are more event!</h5>
+    <div class="scrollable-timetable">
+      <table class="event-table">
+        <tr>
+          <th>Entry Fees ₹</th>
+          <th>Event Name</th>
+          <th>Event Icon</th>
+        </tr>
+        <tr>
+          <td>50</td>
+          <td>Mehendi</td>
+          <td><img src="Mehendi.png" alt="Icon" width="30"></td> 
+        </tr>
+          <tr>
+          <td>50</td>
+          <td>Rangoli</td>
+          <td><img src="rangoli.png" alt="Icon" width="30"></td> 
+     
+        </tr>
+          <tr>
+          <td>50</td>
+          <td>Nail Art</td>
+          <td><img src="nail.png" alt="Icon" width="30"></td> 
+          
+        </tr>
+          <tr>
+          <td>50</td>
+          <td>Makeup & Hairstyle</td>
+          <td><img src="makeup.png" alt="Icon" width="30"></td> 
+          
+        </tr>
+          <tr>
+          <td>50</td>
+          <td>Sketching</td>
+          <td><img src="drawing.png" alt="Icon" width="30"></td> 
+          
+        </tr>
+          <tr>
+          <td>50</td>
+          <td>Salad Decoration</td>
+          <td><img src="salad decoration.png" alt="Icon" width="30"></td> 
+          
+        </tr>
+        <tr>
+          <td>100</td>
+          <td>E-sports</td>
+          <td><img src="esports.png" alt="Icon" width="30"></td> 
+          
+        </tr>
+        <tr>
+          <td>50</td>
+          <td>Tattoo Making</td>
+          <td><img src="tatto.png" alt="Icon" width="30"></td> 
+          
+        </tr>
+        <tr>
+          <td>50</td>
+          <td>Extempore</td>
+          <td><img src="man.png" alt="Icon" width="30"></td> 
+          
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- Day 2 Timetable Section -->
+  <section class="day-timetable">
+    <h3>Event Timetable - Day 2</h3>
+    <div class="scrollable-timetable">
+      <table class="event-table">
+        <tr>
+          <th>Entry Fees ₹</th>
+          <th>Event Name</th>
+          <th>Event Icon</th>
+        </tr>
+        <tr>
+          <td>50</td>
+          <td>Solo Dance</td>
+          <td><img src="dance (1).png" alt="Icon" width="30"></td>
+        </tr>
+        <tr>
+          <td>100</td>
+          <td>Group Dance</td>
+          <td><img src="dancing.png" alt="Icon" width="30"></td> 
+          
+        </tr>
+        <tr>
+          <td>50</td>
+          <td>Chess</td>
+          <td><img src="chess.png" alt="Icon" width="30"></td> 
+          
+        </tr>
+        <tr>
+          <td>50</td>
+          <td>Rubik's Cube</td>
+          <td><img src="rubik.png" alt="Icon" width="30"></td> 
+          
+        </tr>
+      </table>
+    </div>
+  
+
+        <section id="features">
+    <h2 class="features-title">Features</h2>
+    <div class="features-wrapper">
+        <!-- Group A -->
+        <div class="feature-group">
+            <div class="feature-card a1">
+                <i class="fas fa-file-alt feature-icon"></i>
+                <h3>Guidelines</h3>
+                <p>Find all essential rules and guidelines for participation here.</p>
+            </div>
+            <div class="feature-card a2">
+                <i class="fas fa-user-plus feature-icon"></i>
+                <h3>Register</h3>
+                <p>Quickly register for the event. Get all the details on how to sign up.</p>
+            </div>
+        </div>
+        <!-- Group B -->
+        <div class="feature-group">
+            <div class="feature-card b1">
+                <i class="fas fa-calendar-alt feature-icon"></i>
+                <h3>Schedule</h3>
+                <p>Stay updated with the event schedule and timing of each session.</p>
+            </div>
+            <div class="feature-card b2">
+                <i class="fas fa-phone-alt feature-icon"></i>
+                <h3>Contact</h3>
+                <p>Reach out to us with any questions. Our team is here to help you.</p>
+            </div>
+        </div>
+    </div>
+</section>
+  
+<!-- Timeline Section -->
+<section class="timeline-section">
+  <h3 class="timeline-title">How to Register</h3>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-icon">1</div>
+      <div class="timeline-content">
+        <h4>Check Guidelines</h4>
+        <p>Read the guidelines provided below and click on the Register button and dont forget to dowload the pdf rules and regulations.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-icon">2</div>
+      <div class="timeline-content">
+        <h4>Choose Your Event</h4>
+        <p>Select only one event to participate in.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-icon">3</div>
+      <div class="timeline-content">
+        <h4>Complete the Google Form</h4>
+        <p>Fill out the form and make the payment. Don’t forget to take a screenshot.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-icon">4</div>
+      <div class="timeline-content">
+        <h4>Join the whatapp group Link</h4>
+        <p>After submitting the form, follow the link provided on the last page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+  <!-- Guidelines Section -->
+  <div class="guidelines">
+  <h2>Guidelines</h2>
+  <div class="scrollable-text">
+    <ul>
+      <li> ID card is compulsory for entry.</li>
+      <li>Decisions made by judge will be final.</li>
+      <li>Decent behavior is expected; no rude, harsh behavior, or wrong actions will be tolerated.</li>
+      <li>Participants are requested to wear decent attire.</li>
+      <li>On-the-spot changes in the names of participants will not be allowed.</li>
+      <li>Participants and their accompanists must take care of their own belongings.</li>
+      <li>Organizers shall not be held responsible for any kind of loss.</li>
+      <li>Sequence of participation will be informed on the date of competition.</li>
+      <li>On-the-spot registration is allowed.</li>
+      <li>Participants should reach the venue 1 hour before the reporting time.</li>
+      <li>Any damage to the college property will result in the participant bearing the cost.</li>
+      <li>Results will be declared on the same day.</li>
+      <li>For further queries, please contact the respective event in charge.</li>
+      <li>Calls or queries may be entertained only between working hours from 12 pm to 6 pm.</li>
+      <li>Participants must reach the venue by 9:00 am onwards.</li>
+      <li><strong>NOTE:</strong> Only one participant per event participation will be taken.</li>
+    </ul>
+  </div>
+    <button class="register-btn" onclick="window.open('YOUR_GOOGLE_FORM_LINK_HERE', '_blank')">Register Now</button>
+    <button class="pdf-btn" onclick="window.open('uj.pdf', '_blank')">Download rules & regulations PDF</button>
+  </div>
+
+  <!-- FAQ Section -->
+  <section class="faq">
+    <h3>Frequently Asked Questions</h3>
+    <p><strong>Q: How do I register for the event?</strong></p>
+    <p>A: You can register using the "Register" button in the guidelines section.</p>
+    <p><strong>Q: Is an ID card necessary for entry?</strong></p>
+                <p>A: Yes, an ID card is mandatory for entry into the event.</p>
+            </p>
+     <p><strong>Q:Who can I contact for more information about a specific event?</strong></p>
+                <p>A: For further queries, please contact the respective event in-charge during working hours from 12:00 pm to 6:00 pm.</p>
+            </p>
+   <p><strong>Q: How many participants are allowed per event?</strong></p>
+                <p>A: Only one participant per event is allowed to register and participate.</p>
+            </p>
+ <p><strong>Q: How can I get the rules and regulations PDF for each event?</strong></p>
+                <p>A: Once you register, you can click on the "Download" button next to the "Register" button to download the rules and regulations PDF.</p>
+            </p>
+    
+  </section>
+<!-- Responsive Square Google Map Embed -->
+  <section class="Our loctaion">
+ <h3 align="center" >Our Location</h3>
+
+  <div class="map-container">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d431.839599926809!2d73.10674775859827!3d19.22160636864269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be795eba811d2e1%3A0x4a6e77355ac4079c!2sManjunatha%20College%20of%20Commerce!5e0!3m2!1sen!2sin!4v1730863209834!5m2!1sen!2sin"
+    width="100%"
+    height="100%"
+    style="border:0;"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+</section>
+    <a href="https://maps.app.goo.gl/rBh46W4u6GPrJh7F8" target="_blank" class="location-link">View on Google Maps</a>
+  </section>
+ 
+
+  <!-- Contact Us Section -->
+  
+    <h3 align="center">Contact Us</h3>
+<p align="center">Email id:-ksmanjunathacollege@gmail.com</p>
+    <div class="card-section">
+    <div class="card" onclick="expandCard(this)">
+        <img src="logocollege.png" alt="Faculty Logo" class="card-logo">
+        <div class="card-content">
+            <h3>Cultural Incharge</h3>
+            <p>MS. AARTI BADGUJAR :- 7304460544</p>
+           
+            <p class="description">Faculty contacts are available for academic support and guidance.</p>
+        </div>
+        <button class="get-button" onclick="toggleExpand(event, this)">Get</button>
+    </div>
+    <div class="card" onclick="expandCard(this)">
+        <img src="logocollege.png" alt="Student Council Logo" class="card-logo">
+        <div class="card-content">
+            <h3>Event coordinator</h3>
+            <p>MS. DEEPALI BHOLE:- 9920248790</p>
+            <p>MS. SWATI BANGERA:-9987462712</p>
+            <p class="description"></p>
+        </div>
+        <button class="get-button" onclick="toggleExpand(event, this)">Get</button>
+    </div>
+      <div class="card" onclick="expandCard(this)">
+        <img src="student council .png" alt="Student Council Logo" class="card-logo">
+        <div class="card-content">
+            <h3>Student Council</h3>
+            <p>JEET HATI:-7715808509</p>
+            <p>DHARVESH JAITAPKAR:-8976694704</p>
+            <p class="description">Reach out to the Student Council for event and student welfare queries.</p>
+        </div>
+        <button class="get-button" onclick="toggleExpand(event, this)">Get</button>
+    </div>
+    <div class="card" onclick="expandCard(this)">
+        <img src="opi.gif" alt="Technical Team Logo" class="card-logo">
+        <div class="card-content">
+            <h3>MEDIA</h3>
+          <h3>REPRESENTAIVE</h3>
+            <p>UJWAL GURU :-8355872634</p>
+            <p>DEVEN DEKHANE :- 9702979565</p>
+            <p class="description">Technical support for issues related to the event setup.</p>
+        </div>
+        <button class="get-button" onclick="toggleExpand(event, this)">Get</button>
+    </div>
+</div>
+  
+
+  <!-- Footer -->
+  <footer>
+    <footer>
+  <div class="social-icons">
+    <a href="https://www.youtube.com/yourchannel" target="_blank" aria-label="YouTube">
+      <i class="fab fa-youtube"></i>
+    </a>
+    <a href="protfilouj.html" target="_blank" aria-label="Website">
+      <i class="fas fa-globe"></i>
+    </a>
+  </div>
+  <p>Website design,develop and managed by Ujwal Guru</p>
+</footer>
+    <p>&copy; 2024 Karnataka Sangha's Junior College of Commerce</p>
+  </footer>
+
+  <script>
+function toggleExpand(event, button) {
+    event.stopPropagation();
+    const card = button.parentElement;
+    card.classList.toggle('expanded');
+}
+// Set the deadline date
+const deadline = new Date("December 2, 2024 00:00:00").getTime();
+
+// Update the countdown every 1 second
+const countdownInterval = setInterval(() => {
+  const now = new Date().getTime();
+  const timeLeft = deadline - now;
+
+  // Calculate days, hours, minutes, and seconds
+  const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+  // Display the result in the timer element
+  document.getElementById("timer").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+  // If the countdown is over, display a message and clear the interval
+  if (timeLeft < 0) {
+    clearInterval(countdownInterval);
+    document.getElementById("countdown").innerHTML = "This website is now closed.";
+  }
+}, 1000);
+    // Display current date in the notice
+    document.getElementById("currentDate").textContent = new Date().toLocaleDateString();
+
+    // Show the pop-up on page load and trigger animations
+    window.onload = function() {
+      const popup = document.getElementById("popupNotice");
+      popup.style.display = "block";
+
+      // Display the notice content after the fade-in animations finish (7 seconds)
+      setTimeout(() => {
+        document.getElementById("noticeContent").style.display = "block";
+      }, 7000); // Delay for 7 seconds
+    };
+
+    // Function to close the pop-up
+    function closePopup() {
+      document.getElementById("popupNotice").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
