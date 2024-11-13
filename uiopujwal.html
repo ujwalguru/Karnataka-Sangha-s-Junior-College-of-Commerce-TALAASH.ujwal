@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talaash Event Selection</title>
+  <!-- Font Awesome Link for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* General Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ffebf0, #fff6c9);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+      padding: 20px;
+    }
+
+    /* Container Styling */
+    .container {
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    /* Event Title and Note */
+    .event-title {
+      font-size: 24px;
+      font-weight: bold;
+      color: #e91e63;
+      margin-bottom: 10px;
+    }
+
+    .event-note {
+      color: #d32f2f;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    /* Profile Buttons Styling */
+    .profile-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .profile-button {
+      width: 100px;
+      height: 100px;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: #ffebf0;
+      box-shadow: 5px 5px 10px #d9a1ad, -5px -5px 10px #ffffff;
+      text-decoration: none;
+      color: #333;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .profile-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 10px 10px 20px #d9a1ad, -10px -10px 20px #ffffff;
+    }
+
+    .profile-button img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 8px;
+    }
+
+    .event-label {
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .entry-fee {
+      font-size: 10px;
+      color: #666;
+    }
+
+    /* Modal Styling */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 300px;
+      width: 80%;
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-title {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: #e91e63;
+    }
+
+    /* Modal Option Buttons */
+    .modal-option {
+      width: 100px;
+      height: 100px;
+      border-radius: 15px;
+      background: #ffebf0;
+      box-shadow: 5px 5px 10px #d9a1ad, -5px -5px 10px #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #333;
+      margin: 10px auto;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .modal-option:hover {
+      transform: translateY(-5px);
+      box-shadow: 10px 10px 20px #d9a1ad, -10px -10px 20px #ffffff;
+    }
+
+    .modal-option img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 8px;
+    }
+
+    .close-btn {
+      margin-top: 15px;
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Footer Styling */
+    footer {
+      margin-top: 30px;
+      padding: 10px;
+      background: #ffe4e1;
+      border-radius: 10px;
+      box-shadow: inset 5px 5px 10px #d8b3b0, inset -5px -5px 10px #ffffff;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .footer-icon {
+      font-size: 24px;
+      color: #e91e63;
+      transition: transform 0.3s;
+      text-decoration: none;
+    }
+
+    .footer-icon:hover {
+      transform: scale(1.2);
+      color: #c2185b;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img src="logo.png" alt="Event Logo" width="100" style="margin-bottom: 20px;">
+    <h1 class="event-title">TALAASH EVENT</h1>
+    <p class="event-note">Note: Select only one event to participate in.</p>
+
+    <div class="profile-buttons">
+      <!-- Other Event Buttons -->
+<div class="profile-buttons">
+  <!-- Event Buttons -->
+  <a href="https://google.com/form/mehendi" target="_blank" class="profile-button">
+    <img src="mehendi.png" alt="Mehendi">
+    <div class="event-label">MEHENDI</div>
+    <div class="entry-fee">Entry Fee: ₹50</div>
+  </a>
+
+  <a href="https://google.com/form/rangoli" target="_blank" class="profile-button">
+    <img src="rangoli.png" alt="Rangoli">
+    <div class="event-label">RANGOLI</div>
+    <div class="entry-fee">Entry Fee: ₹50</div>
+  </a>
+
+  <a href="https://google.com/form/makeup" target="_blank" class="profile-button">
+    <img src="makeup.png" alt="Makeup">
+    <div class="event-label">MAKE-UP & HAIRSTYLE</div>
+    <div class="entry-fee">Entry Fee: ₹50</div>
+  </a>
+
+  <a href="https://google.com/form/tattoo" target="_blank" class="profile-button">
+    <img src="tatto.png" alt="Tattoo">
+    <div class="event-label">TATTOO MAKING</div>
+    <div class="entry-fee">Entry Fee: ₹50</div>
+  </a>
+
+  <a href="https://google.com/form/salad" target="_blank" class="profile-button">
+    <img src="salad decoration.png" alt="Salad Decoration">
+    <div class="event-label">SALAD DECORATION</div>
+    <div class="entry-fee">Entry Fee: ₹50</div>
+  </a>
+
+  <a href="https://google.com/form/solodance" target="_blank" class="profile-button">
+    <img src="dance (1).png" alt="Solo Dance">
+    <div class="event-label">SOLO DANCE</div>
+    <div class="entry-fee">Entry Fee: ₹50</div>
+  </a>
+
+  <a href="https://google.com/form/groupdance" target="_blank" class="profile-button">
+    <img src="dancing.png" alt="Group Dance">
+    <div class="event-label">GROUP DANCE</div>
+    <div class="entry-fee">Entry Fee: ₹100</div>
+  </a>
+
+  <a href="https://google.com/form/extempore" target="_blank" class="profile-button">
+    <img src="man.png" alt="Extempore">
+    <div class="event-label">EXTEMPORE</div>
+    <div class="entry-fee">Entry Fee: ₹50</div>
+  </a>
+  
+<a href="https://google.com/form/extempore" target="_blank" class="profile-button">
+    <img src="Nail.png" alt="Chess">
+    <div class="event-label">NAIL ART</div>
+    <div class="entry-fee">Entry Fee: ₹50</div>
+  </a>
+  
+<a href="https://google.com/form/extempore" target="_blank" class="profile-button">
+    <img src="drawing.png" alt="Chess">
+    <div class="event-label">SKETCHING</div>
+    <div class="entry-fee">Entry Fee: ₹50</div>
+  </a>
+  <a href="https://google.com/form/extempore" target="_blank" class="profile-button">
+    <img src="chess.png" alt="Chess">
+    <div class="event-label">CHESS</div>
+    <div class="entry-fee">Entry Fee: ₹50</div>
+  </a>
+  <a href="https://google.com/form/extempore" target="_blank" class="profile-button">
+    <img src="RUBIK.png" alt="Chess">
+    <div class="event-label">RUBIK'S CUBE</div>
+    <div class="entry-fee">Entry Fee: ₹50</div>
+  </a>
+  <a href="#" class="profile-button" onclick="openModal()">
+        <img src="esports.png" alt="E-SPORTS">
+        <div class="event-label">E-SPORT</div>
+        <div class="entry-fee">Entry Fee: ₹100</div>
+      </a>
+      
+      <!-- Add other event buttons similarly -->
+    </div>
+  </div>
+
+  <!-- Modal for E-Sport -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <h2 class="modal-title">Select Game</h2>
+      <a href="https://google.com/form/freefire" target="_blank" class="modal-option">
+        <img src="freefire.png" alt="Free Fire">
+        <div>Free Fire</div>
+      </a>
+      <a href="https://google.com/form/bgmi" target="_blank" class="modal-option">
+        <img src="bgmi.png" alt="BGMI">
+        <div>BGMI</div>
+      </a>
+      <button class="close-btn" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <!-- Footer with Social Media Links -->
+  <footer>
+    
+    <a href="https://youtube.com" target="_blank" class="footer-icon">
+      <i class="fab fa-youtube"></i>
+    </a>
+    <a href="https://developer-website.com" target="_blank" class="footer-icon">
+      <i class="fas fa-globe"></i>
+    </a>
+    
+
+  </footer>
+
+  <script>
+    // Open modal function
+    function openModal() {
+      document.getElementById("modal").style.display = "flex";
+    }
+
+    // Close modal function
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+      const modal = document.getElementById("modal");
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+  </script>
+
+</body>
+</html>
