@@ -556,7 +556,64 @@ p {
   background: #f0f0f3;
 }
 
+/* About Us Section */
+.about-us {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #ffe4e1;
+  box-shadow: inset 5px 5px 10px #d8b3b0, inset -5px -5px 10px #ffffff;
+  border-radius: 15px;
+  margin: 20px auto;
+  max-width: 1000px;
+}
 
+.about-us-title {
+  font-size: 24px;
+  color: #ff6f61;
+  margin-bottom: 20px;
+}
+
+.about-us-text {
+  font-size: 16px;
+  color: #333;
+  margin: 0 auto 30px;
+  max-width: 800px;
+}
+
+/* Carousel Styling */
+.carousel {
+  position: relative;
+  overflow: hidden;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 15px;
+  box-shadow: 5px 5px 15px rgba(216, 163, 163, 0.6), -5px -5px 15px rgba(255, 244, 244, 0.9);
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 1s ease;
+  animation: scrollImages 12s infinite;
+}
+
+.carousel-image {
+  min-width: 100%;
+  height: auto;
+  border-radius: 15px;
+}
+
+/* Keyframes for Carousel Auto Scroll */
+@keyframes scrollImages {
+  0%, 20% {
+    transform: translateX(0%);
+  }
+  40%, 60% {
+    transform: translateX(-100%);
+  }
+  80%, 100% {
+    transform: translateX(-200%);
+  }
+}
   
   </style>
 </head>
@@ -565,7 +622,7 @@ p {
   <!-- Pop-up Notice Box -->
   <div class="popup" id="popupNotice">
     <div id="namaste" class="namaste fade-in">Namaste</div>
-    <div id="createdBy" class="created-by fade-in-delay">Website made by Ujwal Guru</div>
+    <div id="createdBy" class="created-by fade-in-delay">DARE TO BE DIFFERENT</div>
     <div id="noticeContent" class="notice-content">
       <h3>Notice</h3>
       <p> Today date is <span id="currentDate"></span>. And registration will close on 02/10/24</p>
@@ -582,7 +639,7 @@ p {
   </nav>
   <!-- Marquee Section Below Navbar -->
   <div class="marquee-container">
-    <div class="marquee">Welcome to our website! Please follow the guidelines and enjoy your time at TALAASH! website design,develop and managed by ujwal guru</div>
+    <div class="marquee">Kanchangaon, Khambalpada, Thakurli (East) - Linguistic Minority (Kannada) INDEX.No J1617052 421201</div>
   </div>
   <!-- Banner Section -->
 <section class="website-banner">
@@ -596,7 +653,22 @@ p {
     <img src="logo.png" alt="Event Logo" class="hero-logo">
     <h2>Welcome to Talaash - Karnataka Sangha's Junior College Event</h2>
   </header>
+<!-- About Us Section -->
+<section class="about-us">
+  <h3 class="about-us-title">About Us</h3>
+  <p class="about-us-text">
+    Established in 2008, Karnataka Sanghas Junior College of Commerce is dedicated to delivering quality commerce education. With a focus on academic excellence and practical learning, we prepare students for success in commerce and management fields. Our experienced faculty and supportive community foster growth, integrity, and lifelong learning.
+  </p>
 
+  <!-- Carousel of College Images -->
+  <div class="carousel">
+    <div class="carousel-track">
+      <img src="college1.jpeg" alt="College Image 1" class="carousel-image">
+      <img src="college2.jpeg" alt="College Image 2" class="carousel-image">
+      <img src="college1.jpeg" alt="College Image 3" class="carousel-image">
+    </div>
+  </div>
+</section>
   <!-- Day 1 Timetable Section -->
   <section class="day-timetable">
     <h3>Event Timetable - Day 1</h3>
