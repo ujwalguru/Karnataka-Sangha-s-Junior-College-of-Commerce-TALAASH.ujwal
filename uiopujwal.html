@@ -4,10 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Talaash Event Selection</title>
-  <!-- Font Awesome Link for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* General Styling */
     body {
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #ffebf0, #fff6c9);
@@ -19,14 +17,12 @@
       padding: 20px;
     }
 
-    /* Container Styling */
     .container {
       text-align: center;
       max-width: 600px;
       width: 100%;
     }
 
-    /* Event Title and Note */
     .event-title {
       font-size: 24px;
       font-weight: bold;
@@ -40,7 +36,6 @@
       margin-bottom: 20px;
     }
 
-    /* Profile Buttons Styling */
     .profile-buttons {
       display: flex;
       flex-wrap: wrap;
@@ -85,7 +80,6 @@
       color: #666;
     }
 
-    /* Modal Styling */
     .modal {
       display: none;
       position: fixed;
@@ -114,32 +108,40 @@
       color: #e91e63;
     }
 
-    /* Modal Option Buttons */
-    .modal-option {
-      width: 100px;
-      height: 100px;
-      border-radius: 15px;
-      background: #ffebf0;
-      box-shadow: 5px 5px 10px #d9a1ad, -5px -5px 10px #ffffff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    .rules {
+      max-height: 200px;
+      overflow-y: auto;
+      text-align: left;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #e91e63;
+      border-radius: 5px;
+      background: #fff5f8;
+    }
+
+    .rules ul {
+      padding-left: 20px;
+    }
+
+    .rules li {
+      margin-bottom: 10px;
+    }
+
+    .register-btn {
+      display: inline-block;
+      margin-top: 10px;
+      background-color: #e91e63;
+      color: #fff;
+      padding: 10px 20px;
       text-decoration: none;
-      color: #333;
-      margin: 10px auto;
-      transition: transform 0.3s, box-shadow 0.3s;
+      border-radius: 5px;
+      font-size: 14px;
+      font-weight: bold;
+      transition: background-color 0.3s;
     }
 
-    .modal-option:hover {
-      transform: translateY(-5px);
-      box-shadow: 10px 10px 20px #d9a1ad, -10px -10px 20px #ffffff;
-    }
-
-    .modal-option img {
-      width: 40px;
-      height: 40px;
-      margin-bottom: 8px;
+    .register-btn:hover {
+      background-color: #c2185b;
     }
 
     .close-btn {
@@ -151,170 +153,326 @@
       border-radius: 5px;
       cursor: pointer;
     }
-
-    /* Footer Styling */
-    footer {
-      margin-top: 30px;
-      padding: 10px;
-      background: #ffe4e1;
-      border-radius: 10px;
-      box-shadow: inset 5px 5px 10px #d8b3b0, inset -5px -5px 10px #ffffff;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .footer-icon {
-      font-size: 24px;
-      color: #e91e63;
-      transition: transform 0.3s;
-      text-decoration: none;
-    }
-
-    .footer-icon:hover {
-      transform: scale(1.2);
-      color: #c2185b;
-    }
+  
   </style>
 </head>
 <body>
-
   <div class="container">
-    <img src="logo.png" alt="Event Logo" width="100" style="margin-bottom: 20px;">
     <h1 class="event-title">TALAASH EVENT</h1>
     <p class="event-note">Note: Select only one event to participate in.</p>
 
     <div class="profile-buttons">
-      <!-- Other Event Buttons -->
-<div class="profile-buttons">
-  <!-- Event Buttons -->
-  <a href="https://forms.gle/HgRix7v1WhUkoWBq8" target="_blank" class="profile-button">
-    <img src="mehendi.png" alt="Mehendi">
-    <div class="event-label">MEHENDI</div>
+      <!-- Event Buttons -->
+      <a href="#" class="profile-button" onclick="openEventModal('mehendi-modal')">
+        <img src="mehendi.png" alt="Mehendi">
+        <div class="event-label">MEHENDI</div>
+        <div class="entry-fee">Entry Fee: ₹50</div>
+      </a>
+
+      <a href="#" class="profile-button" onclick="openEventModal('rangoli-modal')">
+        <img src="rangoli.png" alt="Rangoli">
+        <div class="event-label">RANGOLI</div>
+        <div class="entry-fee">Entry Fee: ₹50</div>
+      </a>
+      
+      <a href="#" class="profile-button" onclick="openEventModal('makeup-modal')">
+        <img src="makeup.png" alt="Makeup">
+        <div class="event-label">MAKEUP</div>
+        <div class="entry-fee">Entry Fee: ₹50</div>
+      </a>
+
+      <a href="#" class="profile-button" onclick="openEventModal('extempore-modal')">
+        <img src="extempore.png" alt="Extempore">
+        <div class="event-label">EXTEMPORE</div>
+        <div class="entry-fee">Entry Fee: ₹50</div>
+      </a>
+ 
+
+  <a href="#" class="profile-button" onclick="openEventModal('tattoo-modal')">
+    <img src="tattoo.png" alt="Tattoo">
+    <div class="event-label">TATTOO</div>
     <div class="entry-fee">Entry Fee: ₹50</div>
   </a>
 
-  <a href="https://forms.gle/xuofrprZRYNBQHwY8" target="_blank" class="profile-button">
-    <img src="rangoli.png" alt="Rangoli">
-    <div class="event-label">RANGOLI</div>
-    <div class="entry-fee">Entry Fee: ₹50</div>
-  </a>
-
-  <a href="https://forms.gle/jha4UYa4ks1FfUYC7" target="_blank" class="profile-button">
-    <img src="makeup.png" alt="Makeup">
-    <div class="event-label">MAKE-UP & HAIRSTYLE</div>
-    <div class="entry-fee">Entry Fee: ₹50</div>
-  </a>
-
-  <a href="https://forms.gle/3ey3u8sxQ14W1VA69" target="_blank" class="profile-button">
-    <img src="tatto.png" alt="Tattoo">
-    <div class="event-label">TATTOO MAKING</div>
-    <div class="entry-fee">Entry Fee: ₹50</div>
-  </a>
-
-  <a href="https://forms.gle/SjFhPRW4x8jcDJy2A" target="_blank" class="profile-button">
-    <img src="salad decoration.png" alt="Salad Decoration">
-    <div class="event-label">SALAD DECORATION</div>
-    <div class="entry-fee">Entry Fee: ₹50</div>
-  </a>
-
-  <a href="https://forms.gle/F16eDBhvL5wZ2V7RA" target="_blank" class="profile-button">
-    <img src="dance (1).png" alt="Solo Dance">
-    <div class="event-label">SOLO DANCE</div>
-    <div class="entry-fee">Entry Fee: ₹50</div>
-  </a>
-
-  <a href="https://forms.gle/u7MqY4VqHF4NqVJKA" target="_blank" class="profile-button">
-    <img src="dancing.png" alt="Group Dance">
-    <div class="event-label">GROUP DANCE</div>
-    <div class="entry-fee">Entry Fee: ₹100</div>
-  </a>
-
-  <a href="https://forms.gle/k3GDXTbPQQjE4UX58" target="_blank" class="profile-button">
-    <img src="man.png" alt="Extempore">
-    <div class="event-label">EXTEMPORE</div>
-    <div class="entry-fee">Entry Fee: ₹50</div>
-  </a>
-  
-<a href="https://forms.gle/5cPqn19r9FTDEtvV8" target="_blank" class="profile-button">
-    <img src="Nail.png" alt="Chess">
+  <a href="#" class="profile-button" onclick="openEventModal('nail-art-modal')">
+    <img src="nail-art.png" alt="Nail Art">
     <div class="event-label">NAIL ART</div>
     <div class="entry-fee">Entry Fee: ₹50</div>
   </a>
   
-<a href="https://forms.gle/LJRoE3PbzNJ7s1uf8" target="_blank" class="profile-button">
-    <img src="drawing.png" alt="Chess">
-    <div class="event-label">SKETCHING</div>
-    <div class="entry-fee">Entry Fee: ₹50</div>
-  </a>
-  <a href="https://forms.gle/EXSShNvcEW5BCtfV6" target="_blank" class="profile-button">
+  <a href="#" class="profile-button" onclick="openEventModal('chess-modal')">
     <img src="chess.png" alt="Chess">
     <div class="event-label">CHESS</div>
     <div class="entry-fee">Entry Fee: ₹50</div>
   </a>
-  <a href="https://forms.gle/eDmCgzjwmcResi8L9" target="_blank" class="profile-button">
-    <img src="RUBIK.png" alt="Chess">
+
+  <a href="#" class="profile-button" onclick="openEventModal('rubiks-cube-modal')">
+    <img src="rubiks-cube.png" alt="Rubik's Cube">
     <div class="event-label">RUBIK'S CUBE</div>
     <div class="entry-fee">Entry Fee: ₹50</div>
   </a>
-  <a href="#" class="profile-button" onclick="openModal()">
-        <img src="esports.png" alt="E-SPORTS">
-        <div class="event-label">E-SPORT</div>
-        <div class="entry-fee">Entry Fee: ₹100</div>
-      </a>
-      
-      <!-- Add other event buttons similarly -->
-    </div>
-  </div>
+  
+  <a href="#" class="profile-button" onclick="openEventModal('salad-decoration-modal')">
+    <img src="salad-decoration.png" alt="Salad Decoration">
+    <div class="event-label">SALAD DECORATION</div>
+    <div class="entry-fee">Entry Fee: ₹50</div>
+  </a>
+  
+  <a href="#" class="profile-button" onclick="openEventModal('bgmi-modal')">
+    <img src="bgmi-icon.png" alt="BGMI">
+    <div class="event-label">BGMI</div>
+    <div class="entry-fee">Entry Fee: ₹100</div>
+  </a>
 
-  <!-- Modal for E-Sport -->
-  <div class="modal" id="modal">
+  <a href="#" class="profile-button" onclick="openEventModal('free-fire-modal')">
+    <img src="free-fire-icon.png" alt="Free Fire">
+    <div class="event-label">Free Fire</div>
+    <div class="entry-fee">Entry Fee: ₹100</div>
+  </a>
+  
+  
+  <!-- Modals -->
+  <div class="modal" id="mehendi-modal">
     <div class="modal-content">
-      <h2 class="modal-title">Select Game</h2>
-      <a href="https://forms.gle/Uy6RVK7AYqbQtH2UA" target="_blank" class="modal-option">
-        <img src="freefire.png" alt="Free Fire">
-        <div>Free Fire</div>
-      </a>
-      <a href="https://forms.gle/3v1U7frYfBwrVfVW7" target="_blank" class="modal-option">
-        <img src="bgmi.png" alt="BGMI">
-        <div>BGMI</div>
-      </a>
-      <button class="close-btn" onclick="closeModal()">Close</button>
+      <h2 class="modal-title">Mehendi Rules</h2>
+      <div class="rules">
+        <ul>
+          <li>Theme: Bridal Mehendi.</li>
+          <li>Mehendi should be applied on one hand up to the elbow, on one side.</li>
+          <li>Participants must bring their own materials and models.</li>
+          <li>Printed material as a reference is not allowed.</li>
+          <li>Duration: 1 hour.</li>
+        </ul>
+      </div>
+      <a href="https://forms.gle/HgRix7v1WhUkoWBq8" target="_blank" class="register-btn">Get Register</a>
+      <button class="close-btn" onclick="closeEventModal('mehendi-modal')">Close</button>
+    </div>
+  </div>
+  
+
+  <div class="modal" id="rangoli-modal">
+    <div class="modal-content">
+      <h2 class="modal-title">Rangoli Rules</h2>
+      <div class="rules">
+        <ul>
+          <li>Theme: Anti-Drug Addiction.</li>
+          <li>Rangoli should be 2x2 feet in size.</li>
+          <li>Reference to printed material is not allowed.</li>
+          <li>Only rangoli colors are to be used; no equipment is allowed.</li>
+          <li>Duration: 1 hour.</li>
+        </ul>
+      </div>
+      <a href="https://forms.gle/xuofrprZRYNBQHwY8" target="_blank" class="register-btn">Get Register</a>
+      <button class="close-btn" onclick="closeEventModal('rangoli-modal')">Close</button>
+    </div>
+  </div>
+  
+  <div class="modal" id="makeup-modal">
+    <div class="modal-content">
+      <h2 class="modal-title">Makeup & Hairstyle Rules</h2>
+      <div class="rules">
+        <ul>
+          <li>Theme: Party Type.</li>
+          <li>Participants must bring their own materials and models.</li>
+          <li>Bright and bold colors should be avoided.</li>
+          <li>Students must keep the natural features of the model intact.</li>
+          <li>Duration: 1 hour.</li>
+        </ul>
+      </div>
+      <a href="https://forms.gle/exampleMakeupForm" target="_blank" class="register-btn">Get Register</a>
+      <button class="close-btn" onclick="closeEventModal('makeup-modal')">Close</button>
+    </div>
+  </div>
+  
+  <div class="modal" id="extempore-modal">
+    <div class="modal-content">
+      <h2 class="modal-title">Extempore Rules</h2>
+      <div class="rules">
+        <ul>
+          <li>The topic will be given on the spot.</li>
+          <li>Medium of language: English, Hindi, or Marathi.</li>
+          <li>Participants will be disqualified for any disrespectful comments towards any caste or community.</li>
+          <li>The speech must be meaningful and authentic to the audience.</li>
+          <li>Duration: 5 minutes (3 minutes for speaking, 2 minutes for thinking).</li>
+        </ul>
+      </div>
+      <a href="https://forms.gle/exampleExtemporeForm" target="_blank" class="register-btn">Get Register</a>
+      <button class="close-btn" onclick="closeEventModal('extempore-modal')">Close</button>
+    </div>
+  </div>
+  <div class="modal" id="tattoo-modal">
+    <div class="modal-content">
+      <h2 class="modal-title">Tattoo Rules</h2>
+      <div class="rules">
+        <ul>
+          <li>The tattoo must be neat and clear.</li>
+          <li>Participants should carry their own materials and models.</li>
+          <li>The tattoo design should be created on one hand.</li>
+          <li>Reference to printed material is strictly not allowed.</li>
+          <li>Duration: 1 hour.</li>
+        </ul>
+      </div>
+      <a href="https://forms.gle/exampleTattooForm" target="_blank" class="register-btn">Get Register</a>
+      <button class="close-btn" onclick="closeEventModal('tattoo-modal')">Close</button>
+    </div>
+  </div>
+  
+  <div class="modal" id="nail-art-modal">
+    <div class="modal-content">
+      <h2 class="modal-title">Nail Art Rules</h2>
+      <div class="rules">
+        <ul>
+          <li>The nail art must be neat and clear.</li>
+          <li>Participants should carry their own materials and models.</li>
+          <li>The nail art design should be created on one hand.</li>
+          <li>Reference to printed material is strictly not allowed.</li>
+          <li>Duration: 1 hour.</li>
+        </ul>
+      </div>
+      <a href="https://forms.gle/exampleNailArtForm" target="_blank" class="register-btn">Get Register</a>
+      <button class="close-btn" onclick="closeEventModal('nail-art-modal')">Close</button>
+    </div>
+  </div>
+  
+  <div class="modal" id="sketching-modal">
+    <div class="modal-content">
+      <h2 class="modal-title">Sketching Rules</h2>
+      <div class="rules">
+        <ul>
+          <li>Theme: Free style.</li>
+          <li>Participants should bring their own materials.</li>
+          <li>Reference to printed material is strictly not allowed.</li>
+          <li>Sketches must be created on an A4 size drawing sheet.</li>
+          <li>Duration: 1 hour 30 minutes.</li>
+        </ul>
+      </div>
+      <a href="https://forms.gle/exampleSketchingForm" target="_blank" class="register-btn">Get Register</a>
+      <button class="close-btn" onclick="closeEventModal('sketching-modal')">Close</button>
+    </div>
+  </div>
+  
+  <div class="modal" id="chess-modal">
+    <div class="modal-content">
+      <h2 class="modal-title">Chess Rules</h2>
+      <div class="rules">
+        <ul>
+          <li>No external help will be provided.</li>
+          <li>Participants must bring their own equipment (chessboard and pieces).</li>
+          <li>
+            <strong>Stalemate:</strong> If a player has no legal moves, and their king is not in check, the game will result in a rematch.
+          </li>
+          <li>
+            <strong>Draws:</strong> The game can end in a draw by mutual agreement, threefold repetition, or the eleven-move rule (11 moves without any pawn movement or capture).
+          </li>
+          <li>Duration: 10 minutes per match.</li>
+        </ul>
+      </div>
+      <a href="https://forms.gle/exampleChessForm" target="_blank" class="register-btn">Get Register</a>
+      <button class="close-btn" onclick="closeEventModal('chess-modal')">Close</button>
+    </div>
+  </div>
+  
+  <div class="modal" id="rubiks-cube-modal">
+    <div class="modal-content">
+      <h2 class="modal-title">Rubik's Cube Rules</h2>
+      <div class="rules">
+        <ul>
+          <li>Students must bring their own Rubik's Cube.</li>
+          <li>All corners and edges should be in the correct positions.</li>
+          <li>
+            Only 6-face Rubik's cubes are allowed; any other type will result in disqualification on the spot.
+          </li>
+          <li>No external help or guide will be provided during the event.</li>
+          <li>Duration: 10 minutes.</li>
+        </ul>
+      </div>
+      <a href="https://forms.gle/exampleRubiksForm" target="_blank" class="register-btn">Get Register</a>
+      <button class="close-btn" onclick="closeEventModal('rubiks-cube-modal')">Close</button>
+    </div>
+  </div>
+  
+  <div class="modal" id="salad-decoration-modal">
+    <div class="modal-content">
+      <h2 class="modal-title">Salad Decoration Rules</h2>
+      <div class="rules">
+        <ul>
+          <li>Participants must bring their own decoration materials and tools for cutting fruits and vegetables.</li>
+          <li>Ingredients must be strictly vegetarian.</li>
+          <li>Detail recipes and the name of the preparation should be displayed beside the dish.</li>
+          <li>Only 2 participants are allowed per salad decoration.</li>
+          <li>Duration: 1 hour.</li>
+        </ul>
+      </div>
+      <a href="https://forms.gle/exampleSaladForm" target="_blank" class="register-btn">Get Register</a>
+      <button class="close-btn" onclick="closeEventModal('salad-decoration-modal')">Close</button>
     </div>
   </div>
 
-  <!-- Footer with Social Media Links -->
-  <footer>
-    
-    <a href="https://youtube.com/@ksjr.college?si=eHrYRzZt_fRoiZWl" target="_blank" class="footer-icon">
-      <i class="fab fa-youtube"></i>
-    </a>
-    <a href="https://developer-website.com" target="_blank" class="footer-icon">
-      <i class="fas fa-globe"></i>
-    </a>
-    
-
-  </footer>
+  <div class="modal" id="bgmi-modal">
+    <div class="modal-content">
+      <h2 class="modal-title">BGMI Event Rules</h2>
+      <div class="rules">
+        <h3>General Rules</h3>
+        <ul>
+          <li>Ipad devices are not allowed. Any team caught using hacks will be disqualified immediately.</li>
+          <li>Abusing or teasing another team will lead to disqualification of the team involved.</li>
+          <li>Only power banks are allowed for charging during the game.</li>
+          <li>The game will feature four maps: Erangle, Miramar, Sanhok, and Vikendi.</li>
+        </ul>
+        <h3>Qualification Round</h3>
+        <ul>
+          <li>32 teams will participate, divided into 2 groups (16 teams in each group).</li>
+          <li>The top 8 teams from each group will qualify for the next round.</li>
+        </ul>
+        <h3>Final Round</h3>
+        <ul>
+          <li>The final round will consist of 16 teams in a single group.</li>
+        </ul>
+      </div>
+      <a href="https://forms.gle/exampleBGMIForm" target="_blank" class="register-btn">Get Register</a>
+      <button class="close-btn" onclick="closeEventModal('bgmi-modal')">Close</button>
+    </div>
+  </div>
+  
+  
+  <div class="modal" id="free-fire-modal">
+    <div class="modal-content">
+      <h2 class="modal-title">Free Fire Event Rules</h2>
+      <div class="rules">
+        <h3>General Rules</h3>
+        <ul>
+          <li>No refund will be provided if you miss the start time.</li>
+          <li>Mismatched Free Fire usernames between participants and registration will lead to disqualification.</li>
+          <li>Sharing Room ID/Password with non-registered users will disqualify your team from the event.</li>
+          <li>Teaming or grieving (intentionally hindering others) results in disqualification.</li>
+          <li>Hacking during the game leads to immediate disqualification and account ban. No refunds allowed.</li>
+          <li>In case of ties, judgments will be made to resolve the issue.</li>
+        </ul>
+      </div>
+      <a href="https://forms.gle/exampleFreeFireForm" target="_blank" class="register-btn">Get Register</a>
+      <button class="close-btn" onclick="closeEventModal('free-fire-modal')">Close</button>
+    </div>
+  </div>
+  
+  <!-- More modals as needed -->
 
   <script>
-    // Open modal function
-    function openModal() {
-      document.getElementById("modal").style.display = "flex";
+    function openEventModal(modalId) {
+      document.getElementById(modalId).style.display = "flex";
     }
 
-    // Close modal function
-    function closeModal() {
-      document.getElementById("modal").style.display = "none";
+    function closeEventModal(modalId) {
+      document.getElementById(modalId).style.display = "none";
     }
 
-    // Close modal when clicking outside of it
     window.onclick = function(event) {
-      const modal = document.getElementById("modal");
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      });
     };
   </script>
-
 </body>
 </html>
